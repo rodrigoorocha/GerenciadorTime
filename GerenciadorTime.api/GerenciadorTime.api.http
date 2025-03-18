@@ -1,0 +1,6 @@
+@GerenciadorTime.api_HostAddress = http://localhost:5275
+
+GET {{GerenciadorTime.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
