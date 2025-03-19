@@ -30,8 +30,9 @@ namespace gerenciadorTime.Aplicacao.Servicos
             return await _jogadorRepositorio.GetByIdAsync(id);
         }
 
-        public Task<int> Adicionar(JogadorAdicionarDTO jogador)
+        public Task<Guid> Adicionar(JogadorAdicionarDTO jogador)
         {
+          
           return  _jogadorRepositorio.SaveAsync(new Jogador
             {
                 DataNascimento = jogador.DataNascimento,

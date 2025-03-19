@@ -6,7 +6,7 @@ namespace GerenciadorTime.Dominio.Interfaces.Repositorios;
 
 public interface IRepository <T> where T : class
 {
-    Task<int> SaveAsync(T entity);
+    Task<Guid> SaveAsync(T entity);
     Task DeleteAsync(Guid id);
     Task<T?> GetByIdAsync(Guid id);
     Task<IEnumerable<T>?> GetByIdsAsync(List<Guid> ids);

@@ -56,7 +56,7 @@ namespace gerenciadorTime.Infra.Repositorios
             return await this.Query.Where(x => ids.Contains(x.Id)).ToListAsync();
         }
 
-        public async Task<int> SaveAsync(T entity)
+        public async Task<Guid> SaveAsync(T entity)
         {
             var obj = await this.Query.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
             if (obj != null)
@@ -67,7 +67,8 @@ namespace gerenciadorTime.Infra.Repositorios
             {
                 await this.Query.AddAsync(entity);
             }
-            return await this.Context.SaveChangesAsync();
+            await this.Context.SaveChangesAsync();
+            return entity.Id; // Return the GUID of the saved entity
         }
 
         
