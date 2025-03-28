@@ -41,5 +41,34 @@ namespace gerenciadorTime.Aplicacao.Servicos
                 Time = jogador.TimeId.HasValue ? new Time() { Id = jogador.TimeId.Value } : null
             });
         }
+
+        public async Task<bool> Atualizar(Guid id, JogadorAdicionarDTO jogador)
+        {
+            var jogadorExistente = await _jogadorRepositorio.GetByIdAsync(id);
+            if (jogadorExistente == null)
+            {
+                return false;
+            }
+
+            jogadorExistente.DataNascimento = jogador.DataNascimento;
+            jogadorExistente.Nome = jogador.Nome;
+            jogadorExistente.Posicao = (GerenciadorTime.Dominio.classes.Posicao)jogador.Posicao;
+            jogadorExistente.Time = jogador.TimeId.HasValue ? new Time() { Id = jogador.TimeId.Value } : null;
+
+            await _jogadorRepositorio.SaveAsync(jogadorExistente);
+            return true;
+        }
+
+        public async Task<bool> Deletar(Guid id)
+        {
+            var jogadorExistente = await _jogadorRepositorio.GetByIdAsync(id);
+            if (jogadorExistente == null)
+            {
+                return false;
+            }
+
+            await _jogadorRepositorio.DeleteAsync(id);
+            return true;
+        }
     }
 }

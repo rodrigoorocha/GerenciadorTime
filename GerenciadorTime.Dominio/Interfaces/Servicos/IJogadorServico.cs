@@ -13,5 +13,7 @@ namespace GerenciadorTime.Dominio.Interfaces.Servicos
         Task<IEnumerable<Jogador>?> ObterTodos();
         Task<Jogador?> ObterPorId(Guid id);
         Task<Guid> Adicionar(JogadorAdicionarDTO jogador);
+        Task<bool> Atualizar(Guid id, JogadorAdicionarDTO jogador);
+        Task<bool> Deletar(Guid id);
     }
 }

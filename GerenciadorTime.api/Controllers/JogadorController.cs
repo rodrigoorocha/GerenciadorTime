@@ -35,5 +35,29 @@ namespace GerenciadorTime.api.Controllers
         {
             return Ok(await servicoJogador.Adicionar(jogadorAdicionarDTO));
         }
+
+        [Route("AtualizarJogador/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> Atualizar([FromRoute] Guid id, [FromBody] JogadorAdicionarDTO jogadorAdicionarDTO)
+        {
+            var resultado = await servicoJogador.Atualizar(id, jogadorAdicionarDTO);
+            if (!resultado)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+        [Route("DeletarJogador/{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> Deletar([FromRoute] Guid id)
+        {
+            var resultado = await servicoJogador.Deletar(id);
+            if (!resultado)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
     }
 }
